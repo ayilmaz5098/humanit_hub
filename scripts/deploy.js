@@ -1,37 +1,38 @@
-// We require the Hardhat Runtime Environment explicitly here. This is optional
-// but useful for running the script in a standalone fashion through `node <script>`.
-//
-// You can also run a script with `npx hardhat run <script>`. If you do that, Hardhat
-// will compile your contracts, add the Hardhat Runtime Environment's members to the
-// global scope, and execute the script.
-const hre = require("hardhat");
-
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const ONE_YEAR_IN_SECS = 365 * 24 * 60 * 60;
-  const unlockTime = currentTimestampInSeconds + ONE_YEAR_IN_SECS;
-
- 
-
-  const Lock = await hre.ethers.getContractFactory("Lock");
-  const lock = await Lock.deploy(unlockTime);
-
-  await lock.deployed();
+  console.log(`Preparing deployment...\n`)
   
+  // Fetch contract to deploy
 
-  const contractFactory = await ethers.getContractFactory('Lock');
+
+  const Token = await ethers.getContractFactory('Token')
+  const Governor = await ethers.getContractFactory('Governor')
+  const Treasury = await ethers.getContractFactory('Treasury')
+  const Timelock = await ethers.getContractFactory('Timelock')
+  // Fetch accounts
+ // Fetch accounts
+
+ // Deploy contracts
+ const dapp = await Token.deploy('DECENTRALIZED App', 'DAPP', '1000000')
+ await dapp.deployed()
+ console.log(`DAPP Deployed to: ${dapp.address}`)
+
+ const mETH = await Token.deploy('mETH', 'mETH', '1000000')
+ await mETH.deployed()
+ console.log(`mETH Deployed to: ${mETH.address}`)
+
+ const mDAI = await Token.deploy('mDAI', 'mDAI', '1000000')
+ await mDAI.deployed()
+ console.log(`mDAI Deployed to: ${mDAI.address}`)
 
 
-  console.log(
-    `Lock with 1 ETH and unlock timestamp ${unlockTime} deployed to ${lock.address}`
-  );
+  const treasury = await Treasury.deploy()
+  await treasury.deployed()
+  console.log(`Treasuty Deployed to: ${treasury.address}`)
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
-/**  const balance = await ethers.provider.getBalance(lock.address);
-  console.log('Balance:', ethers.utils.formatEther(balance));* */
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });

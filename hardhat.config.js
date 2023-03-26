@@ -13,6 +13,7 @@ const { PRIVATE_KEY } = process.env;
 const defaultNetwork = "scroll"
 module.exports = {
   networks: {
+    localhost: { url: "http://127.0.0.1:8545"},
     scroll: {
       url: "https://alpha-rpc.scroll.io/l2",
       accounts: process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],

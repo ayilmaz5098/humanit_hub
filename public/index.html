@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stable DAO Frontend</title>
+  <style>
+    body {
+      background-color: white;
+    }
+    nav {
+      background-color: #333;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem;
+    }
+    ul {
+      display: flex;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    li {
+      margin-right: 1rem;
+    }
+    a {
+      color: white;
+      text-decoration: none;
+    }
+    .left-menu {
+      display: flex;
+      align-items: center;
+    }
+    .right-menu {
+      display: flex;
+      align-items: center;
+    }
+    .wallet-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-right: 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="left-menu">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="right-menu">
+      <h1>DAO</h1>
+      <button class="wallet-button">Connect Wallet</button>
+    </div>
+  </nav>
+  <div>
+    <div id="root"></div>
+    <script src="./index.js"></script>
+  </div>
+</body>
+</html>
